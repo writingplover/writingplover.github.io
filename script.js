@@ -33,26 +33,21 @@ var cColors = [cPurple,cRed,cYellow,cTeal,cMidnightHigh,cMidnightLow,cDaylight]
 var cPrime = cMidnight;
 var cSecond = cMidnightHigh;
 
-var draw; // = SVG().addTo('#main').size(window.innerWidth,window.innerHeight);
+var draw;
 var bgRect;
 var quadrant;
-refresh();
+this.refresh();
 
 function refresh() {
   let main = document.getElementById("main");
-  //window.alert("test" + main.getElementsByTagName('svg'))
-  try { main.getElementsByTagName('svg').remove() } catch(e) {}
-  /*
-  while (main.firstChild) {
-    element.removeChild(main.firstChild);
+  while (main.hasChildNodes()) {
+    main.removeChild(main.firstChild);
   }
-  */
 
   draw = SVG().addTo('#main').size(window.innerWidth,window.innerHeight);
   bgRect = draw.rect('100%','100%').fill(cPrime);
 
   var group = draw.group()
-  //group.remove()
   group.add = largeRandomShape()
   var count = 3 + Math.round(Math.random() * 8);
   for (let i = 0; i < count; i++) { 
