@@ -108,22 +108,22 @@ function theme(el) {
     case "Red":
       cColors = [cPurple,cYellow,cTeal,cRedHigh,cRedLow,cDaylight,cMidnight]
       cPrime = cRed;
-      cSecond = cRedLow;
+      cSecond = cRedHigh;
       break;
     case "Yellow":
       cColors = [cPurple,cRed,cTeal,cYellowHigh,cYellowLow,cDaylight,cMidnight]
       cPrime = cYellow;
-      cSecond = cYellowLow;
+      cSecond = cYellowHigh;
       break;
     case "Teal":
       cColors = [cPurple,cRed,cYellow,cTealHigh,cTealLow,cDaylight,cMidnight]
       cPrime = cTeal;
-      cSecond = cTealLow;
+      cSecond = cTealHigh;
       break;
     case "Purple":
       cColors = [cRed,cYellow,cTeal,cPurpleHigh,cPurpleLow,cDaylight,cMidnight]
       cPrime = cPurple;
-      cSecond = cPurpleLow;
+      cSecond = cPurpleHigh;
       break;
     default:
       cColors = [cPurple,cRed,cYellow,cTeal,cMidnightHigh,cMidnightLow,cDaylight]
