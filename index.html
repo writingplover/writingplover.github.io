@@ -11,6 +11,7 @@
   <body>
     <div id="controls">
       <form>
+        <label>Theme:</label>
         <select name="themes" id="themes" onchange="theme(this);">
           <option value="Midnight">Midnight</option>
           <option value="Daylight">Daylight</option>
@@ -20,8 +21,10 @@
           <option value="Purple">Purple</option>
         </select>
       </form>
-      <button id="refresh" onclick="refresh()">refresh</button>
-      <button id="save" onclick="save()">save</button>
+      <button id="refresh" onclick="refresh()">Reload</button>
+      <span>Download:</span>
+      <button id="save" onclick="save('svg')">svg</button>
+      <button id="save" onclick="save('png')">png</button>
     </div>
       <div id="main"></div>
     </div>

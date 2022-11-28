@@ -47,23 +47,54 @@ function refresh() {
   draw = SVG().addTo('#main').size(window.innerWidth,window.innerHeight);
   bgRect = draw.rect('100%','100%').fill(cPrime);
 
-  var group = draw.group()
+  let group = draw.group()
   group.add = largeRandomShape()
-  var count = 3 + Math.round(Math.random() * 8);
+  let count = 3 + Math.round(Math.random() * 8);
   for (let i = 0; i < count; i++) { 
     group.add = randomShape()
   }
 }
 
-function save() {
-  //return draw.svg()
+function save(type) {
+  const canvas = document.createElement("canvas");
   const svg = document.querySelector('svg');
   const base64doc = btoa(unescape(encodeURIComponent(svg.outerHTML)));
-  const a = document.createElement('a');
-  const e = new MouseEvent('click');
-  a.download = 'texture.svg';
-  a.href = 'data:image/svg+xml;base64,' + base64doc;
-  a.dispatchEvent(e);
+  switch(type) { 
+    case "svg":
+      const a = document.createElement('a');
+      const e = new MouseEvent('click');
+      a.download = 'texture.svg';
+      a.href = 'data:image/svg+xml;base64,' + base64doc;
+      a.dispatchEvent(e);
+      break;
+    case "png":
+      const w = parseInt(svg.getAttribute('width'));
+      const h = parseInt(svg.getAttribute('height'));
+      const img_to_download = document.createElement('img');
+      img_to_download.src = 'data:image/svg+xml;base64,' + base64doc;
+      console.log(w, h);
+      img_to_download.onload = function () {
+        console.log('img loaded');
+        canvas.setAttribute('width', w);
+        canvas.setAttribute('height', h);
+        const context = canvas.getContext("2d");
+        //context.clearRect(0, 0, w, h);
+        context.drawImage(img_to_download,0,0,w,h);
+        const dataURL = canvas.toDataURL('image/png');
+        if (window.navigator.msSaveBlob) {
+          window.navigator.msSaveBlob(canvas.msToBlob(), "download.png");
+          e.preventDefault();
+        } else {
+          const a = document.createElement('a');
+          const my_evt = new MouseEvent('click');
+          a.download = 'download.png';
+          a.href = dataURL;
+          a.dispatchEvent(my_evt);
+        }
+        //canvas.parentNode.removeChild(canvas);
+        }
+      break;
+  }
 }
 
 function theme(el) {
