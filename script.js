@@ -82,12 +82,12 @@ function save(type) {
         context.drawImage(img_to_download,0,0,w,h);
         const dataURL = canvas.toDataURL('image/png');
         if (window.navigator.msSaveBlob) {
-          window.navigator.msSaveBlob(canvas.msToBlob(), "download.png");
+          window.navigator.msSaveBlob(canvas.msToBlob(), "texture.png");
           e.preventDefault();
         } else {
           const a = document.createElement('a');
           const my_evt = new MouseEvent('click');
-          a.download = 'download.png';
+          a.download = 'texture.png';
           a.href = dataURL;
           a.dispatchEvent(my_evt);
         }
